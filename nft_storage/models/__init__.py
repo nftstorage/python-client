@@ -21,7 +21,6 @@ from nft_storage.model.links import Links
 from nft_storage.model.links_file import LinksFile
 from nft_storage.model.list_response import ListResponse
 from nft_storage.model.nft import NFT
-from nft_storage.model.nft_deals import NFTDeals
 from nft_storage.model.pin import Pin
 from nft_storage.model.pin_status import PinStatus
 from nft_storage.model.unauthorized_error_response import UnauthorizedErrorResponse

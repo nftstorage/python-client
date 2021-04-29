@@ -15,7 +15,6 @@ docs/Links.md
 docs/LinksFile.md
 docs/ListResponse.md
 docs/NFT.md
-docs/NFTDeals.md
 docs/NFTStorageAPI.md
 docs/Pin.md
 docs/PinStatus.md
@@ -43,7 +42,6 @@ nft_storage/model/links.py
 nft_storage/model/links_file.py
 nft_storage/model/list_response.py
 nft_storage/model/nft.py
-nft_storage/model/nft_deals.py
 nft_storage/model/pin.py
 nft_storage/model/pin_status.py
 nft_storage/model/unauthorized_error_response.py
@@ -69,7 +67,6 @@ test/test_links.py
 test/test_links_file.py
 test/test_list_response.py
 test/test_nft.py
-test/test_nft_deals.py
 test/test_nft_storage_api.py
 test/test_pin.py
 test/test_pin_status.py

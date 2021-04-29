@@ -1,6 +1,6 @@
 # nft_storage.NFTStorageAPI
 
-All URIs are relative to *https://nft.storage/api*
+All URIs are relative to *https://api.nft.storage*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,10 +29,10 @@ from nft_storage.model.delete_response import DeleteResponse
 from nft_storage.model.unauthorized_error_response import UnauthorizedErrorResponse
 from nft_storage.model.forbidden_error_response import ForbiddenErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://nft.storage/api
+# Defining the host is optional and defaults to https://api.nft.storage
 # See configuration.py for a list of all supported configuration parameters.
 configuration = nft_storage.Configuration(
-    host = "https://nft.storage/api"
+    host = "https://api.nft.storage"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -108,10 +108,10 @@ from nft_storage.model.list_response import ListResponse
 from nft_storage.model.unauthorized_error_response import UnauthorizedErrorResponse
 from nft_storage.model.forbidden_error_response import ForbiddenErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://nft.storage/api
+# Defining the host is optional and defaults to https://api.nft.storage
 # See configuration.py for a list of all supported configuration parameters.
 configuration = nft_storage.Configuration(
-    host = "https://nft.storage/api"
+    host = "https://api.nft.storage"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -128,11 +128,14 @@ configuration = nft_storage.Configuration(
 with nft_storage.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = nft_storage_api.NFTStorageAPI(api_client)
+    before = dateutil_parser('2020-07-27T17:32:28Z') # datetime | Return results created before provided timestamp (optional)
+    limit = 10 # int | Max records to return (optional) if omitted the server will use the default value of 10
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # List all stored files
-        api_response = api_instance.list()
+        api_response = api_instance.list(before=before, limit=limit)
         pprint(api_response)
     except nft_storage.ApiException as e:
         print("Exception when calling NFTStorageAPI->list: %s\n" % e)
@@ -140,7 +143,11 @@ with nft_storage.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **before** | **datetime**| Return results created before provided timestamp | [optional]
+ **limit** | **int**| Max records to return | [optional] if omitted the server will use the default value of 10
 
 ### Return type
 
@@ -185,10 +192,10 @@ from nft_storage.model.unauthorized_error_response import UnauthorizedErrorRespo
 from nft_storage.model.get_response import GetResponse
 from nft_storage.model.forbidden_error_response import ForbiddenErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://nft.storage/api
+# Defining the host is optional and defaults to https://api.nft.storage
 # See configuration.py for a list of all supported configuration parameters.
 configuration = nft_storage.Configuration(
-    host = "https://nft.storage/api"
+    host = "https://api.nft.storage"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -266,10 +273,10 @@ from nft_storage.model.upload_response import UploadResponse
 from nft_storage.model.unauthorized_error_response import UnauthorizedErrorResponse
 from nft_storage.model.forbidden_error_response import ForbiddenErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://nft.storage/api
+# Defining the host is optional and defaults to https://api.nft.storage
 # See configuration.py for a list of all supported configuration parameters.
 configuration = nft_storage.Configuration(
-    host = "https://nft.storage/api"
+    host = "https://api.nft.storage"
 )
 
 # The client must configure the authentication and authorization parameters

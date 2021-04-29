@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **scope** | **str** | Name of the JWT token used to create this NFT. | [optional]  if omitted the server will use the default value of "default"
 **pin** | [**Pin**](Pin.md) |  | [optional] 
 **files** | [**Files**](Files.md) |  | [optional] 
-**deals** | [**NFTDeals**](NFTDeals.md) |  | [optional] 
+**deals** | [**[Deal]**](Deal.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
