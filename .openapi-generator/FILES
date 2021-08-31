@@ -3,6 +3,8 @@
 .openapi-generator-ignore
 .travis.yml
 README.md
+docs/CheckResponse.md
+docs/CheckResponseValue.md
 docs/Deal.md
 docs/DeleteResponse.md
 docs/ErrorResponse.md
@@ -30,6 +32,8 @@ nft_storage/apis/__init__.py
 nft_storage/configuration.py
 nft_storage/exceptions.py
 nft_storage/model/__init__.py
+nft_storage/model/check_response.py
+nft_storage/model/check_response_value.py
 nft_storage/model/deal.py
 nft_storage/model/delete_response.py
 nft_storage/model/error_response.py
@@ -55,6 +59,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_check_response.py
+test/test_check_response_value.py
 test/test_deal.py
 test/test_delete_response.py
 test/test_error_response.py

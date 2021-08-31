@@ -23,6 +23,13 @@ class TestNFTStorageAPI(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_check(self):
+        """Test case for check
+
+        Check if a CID of an NFT is being stored by nft.storage.  # noqa: E501
+        """
+        pass
+
     def test_delete(self):
         """Test case for delete
 

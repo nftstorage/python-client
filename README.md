@@ -50,6 +50,7 @@ import time
 import nft_storage
 from pprint import pprint
 from nft_storage.api import nft_storage_api
+from nft_storage.model.check_response import CheckResponse
 from nft_storage.model.delete_response import DeleteResponse
 from nft_storage.model.error_response import ErrorResponse
 from nft_storage.model.forbidden_error_response import ForbiddenErrorResponse
@@ -63,15 +64,6 @@ configuration = nft_storage.Configuration(
     host = "https://api.nft.storage"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization (JWT): bearerAuth
-configuration = nft_storage.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
 
 
 # Enter a context with an instance of the API client
@@ -81,11 +73,11 @@ with nft_storage.ApiClient(configuration) as api_client:
     cid = "bafkreidivzimqfqtoqxkrpge6bjyhlvxqs3rhe73owtmdulaxr5do5in7u" # str | CID for the NFT
 
     try:
-        # Stop storing the content with the passed CID
-        api_response = api_instance.delete(cid)
+        # Check if a CID of an NFT is being stored by nft.storage.
+        api_response = api_instance.check(cid)
         pprint(api_response)
     except nft_storage.ApiException as e:
-        print("Exception when calling NFTStorageAPI->delete: %s\n" % e)
+        print("Exception when calling NFTStorageAPI->check: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -94,6 +86,7 @@ All URIs are relative to *https://api.nft.storage*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*NFTStorageAPI* | [**check**](docs/NFTStorageAPI.md#check) | **GET** /check/{cid} | Check if a CID of an NFT is being stored by nft.storage.
 *NFTStorageAPI* | [**delete**](docs/NFTStorageAPI.md#delete) | **DELETE** /{cid} | Stop storing the content with the passed CID
 *NFTStorageAPI* | [**list**](docs/NFTStorageAPI.md#list) | **GET** / | List all stored files
 *NFTStorageAPI* | [**status**](docs/NFTStorageAPI.md#status) | **GET** /{cid} | Get information for the stored file CID
@@ -102,6 +95,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [CheckResponse](docs/CheckResponse.md)
+ - [CheckResponseValue](docs/CheckResponseValue.md)
  - [Deal](docs/Deal.md)
  - [DeleteResponse](docs/DeleteResponse.md)
  - [ErrorResponse](docs/ErrorResponse.md)

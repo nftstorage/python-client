@@ -4,11 +4,82 @@ All URIs are relative to *https://api.nft.storage*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**check**](NFTStorageAPI.md#check) | **GET** /check/{cid} | Check if a CID of an NFT is being stored by nft.storage.
 [**delete**](NFTStorageAPI.md#delete) | **DELETE** /{cid} | Stop storing the content with the passed CID
 [**list**](NFTStorageAPI.md#list) | **GET** / | List all stored files
 [**status**](NFTStorageAPI.md#status) | **GET** /{cid} | Get information for the stored file CID
 [**store**](NFTStorageAPI.md#store) | **POST** /upload | Store a file
 
+
+# **check**
+> CheckResponse check(cid)
+
+Check if a CID of an NFT is being stored by nft.storage.
+
+Includes the IPFS pinning state and the Filecoin deal state.
+
+### Example
+
+
+```python
+import time
+import nft_storage
+from nft_storage.api import nft_storage_api
+from nft_storage.model.error_response import ErrorResponse
+from nft_storage.model.check_response import CheckResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.nft.storage
+# See configuration.py for a list of all supported configuration parameters.
+configuration = nft_storage.Configuration(
+    host = "https://api.nft.storage"
+)
+
+
+# Enter a context with an instance of the API client
+with nft_storage.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = nft_storage_api.NFTStorageAPI(api_client)
+    cid = "bafkreidivzimqfqtoqxkrpge6bjyhlvxqs3rhe73owtmdulaxr5do5in7u" # str | CID for the NFT
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Check if a CID of an NFT is being stored by nft.storage.
+        api_response = api_instance.check(cid)
+        pprint(api_response)
+    except nft_storage.ApiException as e:
+        print("Exception when calling NFTStorageAPI->check: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cid** | **str**| CID for the NFT |
+
+### Return type
+
+[**CheckResponse**](CheckResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**5XX** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete**
 > DeleteResponse delete(cid)
@@ -20,6 +91,7 @@ Stop storing the content with the passed CID on nft.storage. - Unpin the item fr
 ### Example
 
 * Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import time
 import nft_storage
@@ -82,6 +154,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -99,6 +172,7 @@ List all stored files
 ### Example
 
 * Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import time
 import nft_storage
@@ -164,6 +238,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -183,6 +258,7 @@ Includes the IPFS pinning state and the Filecoin deal state.
 ### Example
 
 * Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import time
 import nft_storage
@@ -245,6 +321,7 @@ Name | Type | Description  | Notes
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -259,11 +336,12 @@ Name | Type | Description  | Notes
 
 Store a file
 
-Store a file with nft.storage.  - Submit a HTTP `POST` request passing the file data in the request body. - To store multiple files in a directory, submit a `multipart/form-data` HTTP `POST` request.  Use the `Content-Disposition` header for each part to specify a filename. 
+Store a file with nft.storage. You can upload either a single file or multiple files in a directory  Send the POST request with one of: - a single file as a single Blob/File Object as the body - multiple files as FormData with `Content-Disposition` headers for each part to specify filenames and the request header `Content-Type: multipart/form-data`.  You can also upload a Content Addressed Archive (CAR) file, by setting the request body as a single CAR Blob/File object and providing the request header `Content-Type: application/car` Providing a CAR file allows you to pre-compute the root CID for 1 or more files, ensures that the nft.storage will store and provide your assets with the same CID. 
 
 ### Example
 
 * Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import time
 import nft_storage
@@ -321,14 +399,16 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: image/png, application/octet-stream, multipart/form-data
+ - **Content-Type**: image/*, application/car, multipart/form-data
  - **Accept**: application/json
 
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
 **5XX** | Internal Server Error |  -  |
