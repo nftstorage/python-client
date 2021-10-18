@@ -9,6 +9,8 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from nft_storage.model.check_response import CheckResponse
+from nft_storage.model.check_response_value import CheckResponseValue
 from nft_storage.model.deal import Deal
 from nft_storage.model.delete_response import DeleteResponse
 from nft_storage.model.error_response import ErrorResponse
